@@ -1,6 +1,7 @@
 <?php
 
-namespace CodePress\testando\Tests;
+namespace CodePress\CodeCategory\Tests;
+
 
 use Orchestra\Testbench\TestCase;
 
@@ -9,7 +10,7 @@ abstract class AbstractTestCase extends TestCase
 
     public function migrate(){
         $this->artisan('migrate', [
-            '--realpath' => realpath(__DIR__ . '/../src/resources/migration')
+            '--realpath' => realpath(__DIR__ . '/../src/resources/migrations')
         ]);
     }
 

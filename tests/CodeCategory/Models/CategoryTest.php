@@ -6,11 +6,11 @@
  * Time: 21:55
  */
 
-namespace CodePress\testando\Tests\Models;
+namespace CodePress\CoteCategory\Tests\Models;
 
 
-use CodePress\testando\Models\Category;
-use CodePress\testando\Tests\AbstractTestCase;
+use CodePress\CodeCategory\Models\Category;
+use CodePress\CodeCategory\Tests\AbstractTestCase;
 
 class CategoryTest extends AbstractTestCase
 {
@@ -21,9 +21,10 @@ class CategoryTest extends AbstractTestCase
 
     public function test_check_if_a_category_can_be_persisted(){
 
-        $category = Category::create(['name' => 'category test', 'active' => true]);
+        $category = Category::create(['name'=>'Category Test', 'active' => true]);
+        $this->assertEquals('Category Test', $category->name);
 
-        $this->assertEquals('category test', $category->name);
-
+        $category = Caregory::all()->first();
+        $this->assertEquals('Category Test', $category->name);
     }
 }
