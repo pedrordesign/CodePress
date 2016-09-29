@@ -18,6 +18,14 @@ abstract class AbstractTestCase extends TestCase
         ]);
     }
 
+
+    public function getPackageProviders($app)
+    {
+        return [
+            \Cviebrock\EloquentSluggable\ServiceProvider::class
+        ];
+    }
+
     /**
      * Define environment setup.
      *
