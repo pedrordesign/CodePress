@@ -5,6 +5,7 @@ namespace CodePress\CodeCategory\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Validator;
 
 class Category extends Model
 {
@@ -46,6 +47,26 @@ class Category extends Model
         'active',
         'parent_id'
     ];
+
+    private $validator;
+
+    /**
+     * @param $validator
+     */
+    public function setValidator(Validator $validator)
+    {
+        $this->validator = $validator;
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValidator()
+    {
+        return $this->validator;
+
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

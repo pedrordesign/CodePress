@@ -5,12 +5,25 @@ namespace CodePress\CodeCategory\Tests\Models;
 
 use CodePress\CodeCategory\Models\Category;
 use CodePress\CodeCategory\Tests\AbstractTestCase;
+use Illuminate\Validation\Validator;
+use Mockery as m;
 
 class CategoryTest extends AbstractTestCase
 {
-    public function SetUp(){
+    public function setUp(){
         parent::setUp();
         $this->migrate();
+    }
+
+    public function test_inject_validator_in_category_model()
+    {
+
+        $category = new Category();
+        $validator = m::mock(Validator::class);
+        $category->setValidator($validator);
+
+        $this->assertEquals($category->getValidator(), $validator);
+
     }
 
     public function test_check_if_a_category_can_be_persisted(){

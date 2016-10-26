@@ -11,6 +11,8 @@
 |
 */
 
+use CodePress\CodeCategory\Models\Category;
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -19,5 +21,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(Category::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'active' => true
     ];
 });

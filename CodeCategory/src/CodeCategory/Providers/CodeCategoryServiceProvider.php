@@ -17,7 +17,7 @@ class CodeCategoryServiceProvider extends ServiceProvider
             'migrations' //dizer que isso é uma miração e que é pra copiar pra pasta de migração do laravel no artisan:publish
         );
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/codecategory', 'codecategory');
-        require_once __DIR__ . '/../routes.php';
+        require __DIR__ . '/../routes.php';
     }
 
     /**
