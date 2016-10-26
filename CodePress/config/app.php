@@ -179,7 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class
+        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
+        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class
 
     ],
 

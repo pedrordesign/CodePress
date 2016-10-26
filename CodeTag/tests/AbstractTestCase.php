@@ -23,6 +23,19 @@ abstract class AbstractTestCase extends TestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
+    public function getPackageProviders($app)
+    {
+        return [
+            \Cviebrock\EloquentTaggable\ServiceProvider::class,
+        ];
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
     protected function getEnvironmentSetUp($app)
     {
         // Setup default database to use sqlite :memory:

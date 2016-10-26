@@ -5,7 +5,8 @@
     "illuminate/contracts": "~5.3",
     "illuminate/http": "~5.3",
     "illuminate/support": "~5.3",
-    "illuminate/database": "~5.3"
+    "illuminate/database": "~5.3",
+    "cviebrock/eloquent-taggable": "^2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~5.0",
