@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sh_ntbk_hp
- * Date: 22/09/16
- * Time: 20:59
- */
 
 namespace CodePress\CodeCategory\Models;
 
@@ -35,10 +29,17 @@ class Category extends Model
         ];
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function categorizable(){
         return $this->morphTo();
     }
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name',
         'slug',
@@ -46,11 +47,17 @@ class Category extends Model
         'parent_id'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function parent()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');

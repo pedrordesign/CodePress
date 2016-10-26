@@ -1,12 +1,12 @@
 <?php
 
-namespace CodePress\CodeCategory\Tests;
+namespace CodePress\CodeTag\Tests;
 
 use Orchestra\Testbench\TestCase;
 
 /**
  * Class AbstractTestCase
- * @package CodePress\CodeCategory\Tests
+ * @package CodePress\CodeTag\Tests
  */
 abstract class AbstractTestCase extends TestCase
 {
@@ -15,19 +15,6 @@ abstract class AbstractTestCase extends TestCase
         $this->artisan('migrate', [
             '--realpath' => realpath(__DIR__ . '/../src/resources/migrations')
         ]);
-    }
-
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
-     */
-    public function getPackageProviders($app)
-    {
-        return [
-            \Cviebrock\EloquentSluggable\ServiceProvider::class
-        ];
     }
 
     /**

@@ -1,3 +1,5 @@
 /CodeCategory/vendor
+/CodeTag/vendor
+/CodePress/vendor
 /.idea
 composer.phar

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sh_ntbk_hp
- * Date: 22/09/16
- * Time: 21:55
- */
 
-namespace CodePress\CoteCategory\Tests\Models;
+namespace CodePress\CodeCategory\Tests\Models;
 
 
 use CodePress\CodeCategory\Models\Category;
@@ -26,7 +20,6 @@ class CategoryTest extends AbstractTestCase
 
         $category = Category::all()->first();
         $this->assertEquals('Category Test', $category->name);
-
     }
 
     public function test_check_if_can_assign_a_parent_to_a_category(){
