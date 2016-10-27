@@ -8,13 +8,13 @@ use Cviebrock\EloquentSluggable\ServiceProvider;
 class CodeTagServiceProvider extends ServiceProvider
 {
     /**
-     *
+     * //dizer que isso é uma miração e que é pra copiar pra pasta de migração do laravel no artisan:publish
      */
     public function boot()
     {
         $this->publishes(
             [__DIR__ . '/../../resources/migrations' => base_path('database/migrations')],
-            'migrations' //dizer que isso é uma miração e que é pra copiar pra pasta de migração do laravel no artisan:publish
+            'migrations'
         );
 
     }
