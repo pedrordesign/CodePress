@@ -181,10 +181,14 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
         \Cviebrock\EloquentSluggable\ServiceProvider::class,
 
-        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
-        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class
+        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
+
+
+        //\CodePress\CodeTag\Providers\CodeTagServiceProvider::class
+
 
     ],
 

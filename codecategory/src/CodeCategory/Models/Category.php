@@ -2,41 +2,22 @@
 
 namespace CodePress\CodeCategory\Models;
 
-
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Validation\Validator;
+use Illuminate\Contracts\Validation\Validator;
 
+/**
+ * Class Category
+ * @package CodePress\CodeCategory\Models
+ */
 class Category extends Model
 {
-
     use Sluggable;
 
+    /**
+     * @var string
+     */
     protected $table = 'codepress_categories';
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'build_from' => 'name',
-                'save_to'    => 'slug',
-                'unique'     => true
-            ]
-        ];
-    }
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function categorizable(){
-        return $this->morphTo();
-    }
 
     /**
      * @var array
@@ -48,15 +29,32 @@ class Category extends Model
         'parent_id'
     ];
 
+    /**
+     * @var
+     */
     private $validator;
 
     /**
-     * @param $validator
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name',
+                'unique' => true
+            ]
+        ];
+    }
+
+    /**
+     * @param Validator $validator
      */
     public function setValidator(Validator $validator)
     {
         $this->validator = $validator;
-
     }
 
     /**
@@ -65,7 +63,29 @@ class Category extends Model
     public function getValidator()
     {
         return $this->validator;
+    }
 
+    /**
+     * @return bool
+     */
+    public function isValid(){
+        $validator = $this->validator;
+        $validator->setRules(['name' => 'required|max:55']);
+        $validator->setData($this->getAttributes());
+
+        if(!$validator->fails())
+            return true;
+
+        $this->errors = $validator->errors();
+        return false;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function categorizable()
+    {
+        return $this->morphTo();
     }
 
     /**
@@ -83,5 +103,4 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
-
 }

@@ -10,24 +10,23 @@ use Orchestra\Testbench\TestCase;
  */
 abstract class AbstractTestCase extends TestCase
 {
-
-    public function migrate(){
+    /**
+     * Execute migrations files from TestCase
+     */
+    public function migrate()
+    {
         $this->artisan('migrate', [
             '--realpath' => realpath(__DIR__ . '/../src/resources/migrations')
         ]);
     }
 
     /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
+     * @param \Illuminate\Foundation\Application $app
+     * @return array
      */
     public function getPackageProviders($app)
     {
-        return [
-            \Cviebrock\EloquentTaggable\ServiceProvider::class,
-        ];
+        return [];
     }
 
     /**

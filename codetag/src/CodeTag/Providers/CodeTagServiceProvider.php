@@ -3,7 +3,7 @@
 namespace CodePress\CodeTag\Providers;
 
 
-use Cviebrock\EloquentSluggable\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class CodeTagServiceProvider extends ServiceProvider
 {

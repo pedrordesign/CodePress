@@ -4,16 +4,26 @@ namespace CodePress\CodeCategory\Controllers;
 
 
 use CodePress\CodeCategory\Models\Category;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
 class AdminCategoriesController extends Controller
 {
 
+    /**
+     * @var Category
+     */
     private $category;
 
-    public function __construct(Category $category)
+    /**
+     * @var ResponseFactory
+     */
+    private $response;
+
+    public function __construct(ResponseFactory $response, Category $category)
     {
         $this->category = $category;
+        $this->response = $response;
     }
 
     /**
@@ -22,7 +32,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $categories = $this->category->all();
-        return view('codecategory::index', compact('categories'));
+        return $this->response->view('codecategory::index', compact('categories'));
 
     }
 
