@@ -27,6 +27,7 @@ class AdminCategoriesControllerTest extends AbstractTestCase
 
         $this->assertInstanceOf(Controller::class, $controller);
     }
+
     public function test_controller_should_run_index_method_and_return_correct_arguments()
     {
         $category = m::mock(Category::class);
