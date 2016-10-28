@@ -4,6 +4,7 @@ namespace CodePress\CodeCategory\Controllers;
 
 
 use CodePress\CodeCategory\Models\Category;
+use CodePress\CodeCategory\Repository\CategoryRepository;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 
@@ -13,16 +14,16 @@ class AdminCategoriesController extends Controller
     /**
      * @var Category
      */
-    private $category;
+    private $repository;
 
     /**
      * @var ResponseFactory
      */
     private $response;
 
-    public function __construct(ResponseFactory $response, Category $category)
+    public function __construct(ResponseFactory $response, CategoryRepository $repository)
     {
-        $this->category = $category;
+        $this->repository = $repository;
         $this->response = $response;
     }
 
@@ -31,21 +32,46 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->category->all();
+        $categories = $this->repository->all();
         return $this->response->view('codecategory::index', compact('categories'));
 
     }
 
     public function create()
     {
-        $categories = $this->category->all();
+        $categories = $this->repository->all();
         return view('codecategory::create', compact('categories'));
 
     }
 
     public function store(Request $request)
     {
-        $this->category->create($request->all());
+        $this->repository->create($request->all());
+        return redirect()->route('admin.categories.index');
+    }
+
+    public function edit($id)
+    {
+        $category = $this->repository->find($id);
+        $categories = $this->repository->all();
+        return $this->response->view('codecategory::edit', compact('category', 'categories'));
+    }
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        //var_dump($data); die;
+        if(!isset($data['active'])){
+            $data['active'] = false;
+        }else{
+            $data['active'] = true;
+        }
+
+        if(!isset($data['parent_id']) || (isset($data['parent_id']) && $data['parent_id'] == 0)){
+            $data['parent_id'] = null;
+        }
+
+        $category = $this-$this->repository->update($data, $id);
+        //var_dump($category); die;
         return redirect()->route('admin.categories.index');
     }
 

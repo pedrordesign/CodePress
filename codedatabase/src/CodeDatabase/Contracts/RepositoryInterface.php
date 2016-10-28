@@ -14,8 +14,6 @@ interface RepositoryInterface{
 
     public function find($id);
 
-    public function columns($id, $columns = array('*'));
-
     public function findBy($field, $value, $columns = array('*'));
 
 }
