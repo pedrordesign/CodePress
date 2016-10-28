@@ -4,20 +4,34 @@ namespace CodePress\CodeDatabase\Tests;
 
 use CodePress\CodeDatabase\AbstractRepository;
 use CodePress\CodeDatabase\Contracts\RepositoryInterface;
+use CodePress\CodeDatabase\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Mockery as m;
 
 class AbstractRepositoryTest extends AbstractTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        $this->migrate();
+        Category::create([
+            'name' => 'name Category',
+            'description' => 'description category'
+        ]);
+        echo Category::all()->first()->name;
 
-    public function test_if_implements_repositoryinterface(){
+    }
+
+    public function test_if_implements_repositoryinterface()
+    {
 
         $mock = m::mock(AbstractRepository::class);
         $this->assertInstanceOf(RepositoryInterface::class, $mock);
 
     }
 
-    public function test_should_return_all_without_arguments(){
+    public function test_should_return_all_without_arguments()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -34,7 +48,8 @@ class AbstractRepositoryTest extends AbstractTestCase
 
     }
 
-    public function test_should_return_all_with_arguments(){
+    public function test_should_return_all_with_arguments()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -52,7 +67,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_create(){
+    public function test_should_return_create()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -71,7 +87,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_update_success(){
+    public function test_should_return_update_success()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -92,7 +109,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     /**
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function test_should_update_fail(){
+    public function test_should_update_fail()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $throw = new ModelNotFoundException();
@@ -109,7 +127,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_delete_success(){
+    public function test_should_return_delete_success()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
 
@@ -129,7 +148,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     /**
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function test_should_return_delete_fail(){
+    public function test_should_return_delete_fail()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $throw = new ModelNotFoundException();
@@ -146,7 +166,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_find_without_columns_success(){
+    public function test_should_return_find_without_columns_success()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -165,7 +186,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_find_with_columns_success(){
+    public function test_should_return_find_with_columns_success()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -186,7 +208,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     /**
      * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function test_should_return_find_fail(){
+    public function test_should_return_find_fail()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $throw = new ModelNotFoundException();
@@ -202,7 +225,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_findBy_with_columns(){
+    public function test_should_return_findBy_with_columns()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
@@ -223,7 +247,8 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
 
-    public function test_should_return_findBy_empty_success(){
+    public function test_should_return_findBy_empty_success()
+    {
 
         $mockRepository = m::mock(AbstractRepository::class);
         $mockStd = m::mock(\stdClass::class);
