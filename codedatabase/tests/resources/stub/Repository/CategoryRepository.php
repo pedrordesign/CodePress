@@ -8,19 +8,14 @@ use CodePress\CodeDatabase\Models\Category;
 class CategoryRepository extends AbstractRepository
 {
 
-    public function find($id)
+    public function findBy($field, $value, $columns = array('*'))
     {
-        // TODO: Implement find() method.
+        // TODO: Implement findBy() method.
     }
 
     public function columns($id, $columns = array('*'))
     {
         // TODO: Implement columns() method.
-    }
-
-    public function findBy($field, $value, $columns = array('*'))
-    {
-        // TODO: Implement findBy() method.
     }
 
     public function model()
