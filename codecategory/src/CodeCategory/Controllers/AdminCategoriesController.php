@@ -11,14 +11,7 @@ use Illuminate\Http\Request;
 class AdminCategoriesController extends Controller
 {
 
-    /**
-     * @var Category
-     */
     private $repository;
-
-    /**
-     * @var ResponseFactory
-     */
     private $response;
 
     public function __construct(ResponseFactory $response, CategoryRepository $repository)
