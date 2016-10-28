@@ -108,4 +108,41 @@ class AbstractRepositoryTest extends AbstractTestCase
 
     }
 
+
+    public function test_should_return_delete_success(){
+
+        $mockRepository = m::mock(AbstractRepository::class);
+
+
+        $mockRepository
+            ->shouldReceive('delete')
+            ->with(1)
+            ->andReturn(true);
+
+        $result = $mockRepository->delete(1);
+        $this->assertEquals(true, $result);
+
+    }
+
+
+
+    /**
+     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function test_should_return_delete_fail(){
+
+        $mockRepository = m::mock(AbstractRepository::class);
+        $throw = new ModelNotFoundException();
+        $throw->setModel(\stdClass::class);
+
+
+        $mockRepository
+            ->shouldReceive('delete')
+            ->with(0)
+            ->andThrow($throw);
+
+        $mockRepository->delete(0);
+
+    }
+
 }
