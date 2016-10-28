@@ -28,8 +28,9 @@ class AbstractRepositoryTest extends AbstractTestCase
         $mockRepository->shouldReceive('all')
             ->andReturn([$mockStd,$mockStd,$mockStd]);
 
-        $this->assertCount(3, $mockRepository->all());
-        $this->assertInstanceOf(\stdClass::class, $mockRepository->all()[0]);
+        $result = $mockRepository->all();
+        $this->assertCount(3, $result);
+        $this->assertInstanceOf(\stdClass::class, $result[0]);
 
     }
 
@@ -198,6 +199,47 @@ class AbstractRepositoryTest extends AbstractTestCase
             ->andThrow($throw);
 
         $mockRepository->find(0);
+    }
+
+
+    public function test_should_return_findBy_with_columns(){
+
+        $mockRepository = m::mock(AbstractRepository::class);
+        $mockStd = m::mock(\stdClass::class);
+        $mockStd->id = 1;
+        $mockStd->name = 'name';
+
+
+        $mockRepository
+            ->shouldReceive('findBy')
+            ->with('name', 'my-data', ['id', 'name'])
+            ->andReturn([$mockStd, $mockStd, $mockStd]);
+
+        $result = $mockRepository->findBy('name', 'my-data', ['id', 'name']);
+        $this->assertCount(3, $result);
+        $this->assertInstanceOf(\stdClass::class, $result[0]);
+
+
+    }
+
+
+    public function test_should_return_findBy_empty_success(){
+
+        $mockRepository = m::mock(AbstractRepository::class);
+        $mockStd = m::mock(\stdClass::class);
+        $mockStd->id = 1;
+        $mockStd->name = 'name';
+
+
+        $mockRepository
+            ->shouldReceive('findBy')
+            ->with('name', '', ['id', 'name'])
+            ->andReturn([]);
+
+        $result = $mockRepository->findBy('name', '', ['id', 'name']);
+        $this->assertCount(0, $result);
+
+
     }
 
 }
