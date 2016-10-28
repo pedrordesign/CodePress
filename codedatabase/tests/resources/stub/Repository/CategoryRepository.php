@@ -8,11 +8,6 @@ use CodePress\CodeDatabase\Models\Category;
 class CategoryRepository extends AbstractRepository
 {
 
-    public function findBy($field, $value, $columns = array('*'))
-    {
-        // TODO: Implement findBy() method.
-    }
-
     public function columns($id, $columns = array('*'))
     {
         // TODO: Implement columns() method.
@@ -22,4 +17,5 @@ class CategoryRepository extends AbstractRepository
     {
         return Category::class;
     }
+
 }

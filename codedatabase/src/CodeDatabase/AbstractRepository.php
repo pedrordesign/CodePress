@@ -36,7 +36,7 @@ abstract class AbstractRepository implements RepositoryInterface{
 
     public function update(array $data, $id)
     {
-        // $model = $this->model->findOrFail($id);
+        // $model = $this->model->findOrFail($id); v1
         $model = $this->find($id);
 
         $model->update($data);
@@ -54,6 +54,11 @@ abstract class AbstractRepository implements RepositoryInterface{
     public function find($id, $columns = array('*'))
     {
         return $this->model->findOrFail($id, $columns);
+    }
+
+    public function findBy($field, $value, $columns = array('*'))
+    {
+        return $this->model->where($field, '=', $value)->get($columns);
     }
 
 }
