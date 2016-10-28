@@ -8,11 +8,6 @@ use CodePress\CodeDatabase\Models\Category;
 class CategoryRepository extends AbstractRepository
 {
 
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
-
     public function find($id)
     {
         // TODO: Implement find() method.

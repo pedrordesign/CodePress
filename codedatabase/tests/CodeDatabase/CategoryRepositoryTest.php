@@ -102,6 +102,23 @@ class CategoryRepositoryTest extends AbstractTestCase
         ], 4);
     }
 
+    public function test_can_delete_category()
+    {
+        $result = $this->repository->delete(1);
+
+        $categories = Category::all();
+        $this->assertCount(2, $categories);
+        $this->assertEquals(true, $result);
+    }
+
+    /**
+     * @expectedException  \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function test_cant_delete_category()
+    {
+        $this->repository->delete(4);
+    }
+
     public function createCategory()
     {
         Category::create([
