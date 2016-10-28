@@ -25,7 +25,8 @@ class CategoryRepositoryTest extends AbstractTestCase
     public function test_if_can_make_model()
     {
         $repository = new CategoryRepository();
-        $repository->makeModel();
+        $result = $repository->makeModel();
+        $this->assertInstanceOf(Category::class, $result);
 
         $reflectionClass = new \ReflectionClass($repository);
         $reflectionProperty = $reflectionClass->getProperty('model');
