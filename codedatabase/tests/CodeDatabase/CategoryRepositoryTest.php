@@ -2,10 +2,8 @@
 
 namespace CodePress\CodeDatabase\Tests;
 
-use CodePress\CodeDatabase\AbstractRepository;
 use CodePress\CodeDatabase\Models\Category;
 use CodePress\CodeDatabase\Repository\CategoryRepository;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Mockery as m;
 
 class CategoryRepositoryTest extends AbstractTestCase
@@ -75,6 +73,33 @@ class CategoryRepositoryTest extends AbstractTestCase
         $result = Category::find(4);
         $this->assertEquals('Category 4', $result->name);
         $this->assertEquals('Description 4', $result->description);
+    }
+
+    public function test_can_update_category()
+    {
+        $result = $this->repository->update([
+            'name' => 'Category 1 Atualizada',
+            'description' => 'Description 1 Atualizada'
+        ], 1);
+
+        $this->assertInstanceOf(Category::class, $result);
+        $this->assertEquals('Category 1 Atualizada', $result->name);
+        $this->assertEquals('Description 1 Atualizada', $result->description);
+
+        $result = Category::find(1);
+        $this->assertEquals('Category 1 Atualizada', $result->name);
+        $this->assertEquals('Description 1 Atualizada', $result->description);
+    }
+
+    /**
+     * @expectedException  \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function test_cant_update_category()
+    {
+        $this->repository->update([
+            'name' => 'Category 4 Atualizada',
+            'description' => 'Description 4 Atualizada'
+        ], 4);
     }
 
     public function createCategory()
