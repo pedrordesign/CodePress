@@ -19,12 +19,14 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
      * @var CategoryRepository
      */
     private $repository;
+    private $globalDescriptionToTest = 'asdasdasdasd';
     public function setUp()
     {
         parent::setUp();
         $this->migrate();
         $this->repository = new CategoryRepository();
         $this->createCategory();
+        $this->create_category_description_equals($this->globalDescriptionToTest);
     }
 
     public function test_if_is_instanceof_criteria_collection()
@@ -62,16 +64,8 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
 
     public function test_if_can_apply_criteria()
     {
-        Category::create([
-            'name' => 'Category Dois',
-            'description' => 'asdasdasd'
-        ]);
-        Category::create([
-            'name' => 'Category Um',
-            'description' => 'asdasdasd'
-        ]);
-
-        $criteria1 = new FindByDescription('asdasdasd');
+        // CREATING CATEGORIES WITH SAME DESCRIPTION ON CONSTRUCTOR
+        $criteria1 = new FindByDescription($this->globalDescriptionToTest);
         $criteria2 = new OrderByNameDesc();
 
         $this->repository
@@ -85,6 +79,35 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
         $this->assertCount(2, $result);
         $this->assertEquals($result[0]->name, 'Category Um');
         $this->assertEquals($result[1]->name, 'Category Dois');
+    }
+
+    public function test_can_list_all_categories_with_criteria()
+    {
+        // CREATING CATEGORIES WITH SAME DESCRIPTION ON CONSTRUCTOR
+        $criteria1 = new FindByDescription($this->globalDescriptionToTest);
+        $criteria2 = new OrderByNameDesc();
+
+        $this->repository
+            ->addCriteria($criteria1)
+            ->addCriteria($criteria2);
+
+        $result = $this->repository->all();
+        $this->assertCount(2, $result);
+        $this->assertEquals($result[0]->name, 'Category Um');
+        $this->assertEquals($result[1]->name, 'Category Dois');
+    }
+
+    private function create_category_description_equals($description)
+    {
+        Category::create([
+            'name' => 'Category Dois',
+            'description' => $description
+        ]);
+        Category::create([
+            'name' => 'Category Um',
+            'description' => $description
+        ]);
+
     }
 
     public function createCategory()
