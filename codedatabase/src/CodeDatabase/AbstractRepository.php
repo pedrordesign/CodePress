@@ -68,7 +68,8 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
 
     public function addCriteria(CriteriaInterface $criteria)
     {
-
+        $this->criteriaCollection['name'] = $criteria;
+        return $this;
     }
 
     public function getCriteriaCollection()
