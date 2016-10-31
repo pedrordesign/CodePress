@@ -1,8 +1,8 @@
 <?php
 
-namespace CodePress\CodeDatabase;
+namespace CodePress\CodeDatabase\Contracts;
 
-use CodePress\CodeDatabase\Contracts\RepositoryInterface;
-interface CriteriaInterface{
+interface CriteriaInterface
+{
     public function apply($model, RepositoryInterface $repository);
 }
