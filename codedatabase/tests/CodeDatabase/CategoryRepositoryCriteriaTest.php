@@ -27,6 +27,12 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
         $this->assertInstanceOf(CriteriaCollection::class, $this->repository);
     }
 
+    public function test_if_can_get_criteriacollection()
+    {
+        $result = $this->repository->getCriteriaCollection();
+        $this->assertCount(0, $result);
+    }
+
     public function createCategory()
     {
         Category::create([
