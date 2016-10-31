@@ -4,6 +4,7 @@ namespace CodePress\CodeDatabase\Tests;
 
 use CodePress\CodeDatabase\Models\Category;
 use CodePress\CodeDatabase\Repository\CategoryRepository;
+
 use Mockery as m;
 
 class CategoryRepositoryTest extends AbstractTestCase

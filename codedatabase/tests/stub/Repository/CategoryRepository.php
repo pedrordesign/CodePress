@@ -1,9 +1,9 @@
 <?php
 
-namespace CodePress\CodeCategory\Repository;
+namespace CodePress\CodeDatabase\Repository;
 
-use CodePress\CodeCategory\Models\Category;
 use CodePress\CodeDatabase\AbstractRepository;
+use CodePress\CodeDatabase\Models\Category;
 
 class CategoryRepository extends AbstractRepository
 {
