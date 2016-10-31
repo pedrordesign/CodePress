@@ -1,5 +1,7 @@
 <?php
 
+namespace CodePress\CodeDatabase\Contracts;
+
 use CodePress\CodeDatabase\Contracts\CriteriaInterface;
 
 interface CriteriaCollection{

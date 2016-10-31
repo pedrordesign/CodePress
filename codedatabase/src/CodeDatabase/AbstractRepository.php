@@ -2,9 +2,11 @@
 
 namespace CodePress\CodeDatabase;
 
+use CodePress\CodeDatabase\Contracts\CriteriaCollection;
+use CodePress\CodeDatabase\Contracts\CriteriaInterface;
 use CodePress\CodeDatabase\Contracts\RepositoryInterface;
 
-abstract class AbstractRepository implements RepositoryInterface{
+abstract class AbstractRepository implements RepositoryInterface, CriteriaCollection{
 
     /**
      * @var \Illuminate\Database\Eloquent\Model
@@ -59,6 +61,27 @@ abstract class AbstractRepository implements RepositoryInterface{
     public function findBy($field, $value, $columns = array('*'))
     {
         return $this->model->where($field, '=', $value)->get($columns);
+    }
+
+
+    public function addCriteria(CriteriaInterface $criteria)
+    {
+
+    }
+
+    public function getCriteriaCollection()
+    {
+
+    }
+
+    public function getByCriteria(CriteriaInterface $CriteriaInterface)
+    {
+
+    }
+
+    public function applyCriteria()
+    {
+
     }
 
 }
