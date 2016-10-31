@@ -65,7 +65,7 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
 
     public function addCriteria(CriteriaInterface $criteria)
     {
-        $this->criteriaCollection['name'] = $criteria;
+        $this->criteriaCollection[] = $criteria;
         return $this;
     }
 
@@ -82,7 +82,10 @@ abstract class AbstractRepository implements RepositoryInterface, CriteriaCollec
 
     public function applyCriteria()
     {
-
+        foreach ($this->getCriteriaCollection() as $criteria) {
+            $this->model = $criteria->apply($this->model, $this);
+        }
+        return $this;
     }
 
 }

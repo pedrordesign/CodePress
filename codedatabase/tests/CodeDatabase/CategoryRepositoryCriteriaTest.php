@@ -63,15 +63,15 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
     public function test_if_can_apply_criteria()
     {
         Category::create([
-            'name' => 'Category 4',
-            'description' => 'Description'
+            'name' => 'Category Dois',
+            'description' => 'asdasdasd'
         ]);
         Category::create([
-            'name' => 'Category 5',
-            'description' => 'Description'
+            'name' => 'Category Um',
+            'description' => 'asdasdasd'
         ]);
 
-        $criteria1 = new FindByDescription('Description');
+        $criteria1 = new FindByDescription('asdasdasd');
         $criteria2 = new OrderByNameDesc();
 
         $this->repository
@@ -79,9 +79,12 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
             ->addCriteria($criteria2);
 
         $repository = $this->repository->applyCriteria();
-
         $this->assertInstanceOf(CategoryRepository::class, $repository);
 
+        $result = $repository->all();
+        $this->assertCount(2, $result);
+        $this->assertEquals($result[0]->name, 'Category Um');
+        $this->assertEquals($result[1]->name, 'Category Dois');
     }
 
     public function createCategory()
