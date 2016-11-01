@@ -2,6 +2,7 @@
 
 namespace CodePress\CodeDatabase\Tests;
 
+use CodePress\CodeDatabase\AbstractRepository;
 use CodePress\CodeDatabase\Criteria\OrderByIdDesc;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use CodePress\CodeDatabase\Contracts\CriteriaCollection;
@@ -153,6 +154,26 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
         $this->assertEquals($result[0]->name, 'Category Dois');
         $this->assertEquals($result[1]->id, 4);
         $this->assertEquals($result[1]->name, 'Category Dois');
+    }
+
+    public function test_if_can_ignore_criteria(){
+        $reflectionClass = new \ReflectionClass($this->repository);
+        $reflectionProperty = $reflectionClass->getProperty('isIgnoreCriteria');
+        $reflectionProperty->setAccessible(true);
+
+        $result = $reflectionProperty ->getValue($this->repository);
+        $this->assertFalse($result);
+
+        $this->repository->ignoreCriteria(true);
+
+        $result = $reflectionProperty ->getValue($this->repository);
+        $this->assertTrue($result);
+
+        $this->repository->ignoreCriteria(false);
+        $result = $reflectionProperty ->getValue($this->repository);
+        $this->assertFalse($result);
+
+        $this->assertInstanceOf(CategoryRepository::class, $this->repository->ignoreCriteria(false));
     }
 
 
