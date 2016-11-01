@@ -3,6 +3,8 @@
 namespace CodePress\CodeCategory\Providers;
 
 
+use CodePress\CodeCategory\Repository\CategoryRepositoryEloquent;
+use CodePress\CodeCategory\Repository\CategoryRepositoryInterface;
 use Cviebrock\EloquentSluggable\ServiceProvider;
 
 class CodeCategoryServiceProvider extends ServiceProvider
@@ -28,6 +30,7 @@ class CodeCategoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepositoryEloquent::class);
     }
 
 }
