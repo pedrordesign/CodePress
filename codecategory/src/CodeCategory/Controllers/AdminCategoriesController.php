@@ -68,8 +68,4 @@ class AdminCategoriesController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
-    public function myAction(){
-        
-    }
-
 }

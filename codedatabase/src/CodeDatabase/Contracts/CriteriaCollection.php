@@ -12,6 +12,6 @@ interface CriteriaCollection{
 
     public function applyCriteria();
 
-    public function ignoreCriteria($isIgnore);
+    public function ignoreCriteria($isIgnored = true);
 
 }
