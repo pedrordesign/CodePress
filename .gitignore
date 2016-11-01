@@ -1,8 +1,7 @@
-/codecategory/vendor
-/codetag/vendor
-/codedatabase/vendor
 /CodePress/vendor
 /codetag
 /codecategory
+/codedatabase
+/CodePress/packages/*
 /.idea
 composer.phar
