@@ -3,5 +3,6 @@
 /codedatabase/vendor
 /CodePress/vendor
 /codetag
+/codecategory
 /.idea
 composer.phar
