@@ -94,7 +94,7 @@ class AbstractRepositoryTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function test_should_update_fail()
     {
@@ -133,7 +133,7 @@ class AbstractRepositoryTest extends AbstractTestCase
 
 
     /**
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function test_should_return_delete_fail()
     {
@@ -193,7 +193,7 @@ class AbstractRepositoryTest extends AbstractTestCase
 
 
     /**
-     * @expectedException Illuminate\Database\Eloquent\ModelNotFoundException
+     * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function test_should_return_find_fail()
     {

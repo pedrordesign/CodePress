@@ -2,9 +2,11 @@
 
 namespace CodePress\CodeDatabase\Tests;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use CodePress\CodeDatabase\Contracts\CriteriaCollection;
 use CodePress\CodeDatabase\Contracts\CriteriaInterface;
 use CodePress\CodeDatabase\Criteria\FindByDescription;
+use CodePress\CodeDatabase\Criteria\FindByName;
 use CodePress\CodeDatabase\Criteria\FindByNameAndDescription;
 use CodePress\CodeDatabase\Criteria\OrderByNameDesc;
 use CodePress\CodeDatabase\Models\Category;
@@ -19,14 +21,12 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
      * @var CategoryRepository
      */
     private $repository;
-    private $globalDescriptionToTest = 'asdasdasdasd';
     public function setUp()
     {
         parent::setUp();
         $this->migrate();
         $this->repository = new CategoryRepository();
         $this->createCategory();
-        $this->create_category_description_equals($this->globalDescriptionToTest);
     }
 
     public function test_if_is_instanceof_criteria_collection()
@@ -64,8 +64,9 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
 
     public function test_if_can_apply_criteria()
     {
-        // CREATING CATEGORIES WITH SAME DESCRIPTION ON CONSTRUCTOR
-        $criteria1 = new FindByDescription($this->globalDescriptionToTest);
+        $this->createCategoryDescription();
+
+        $criteria1 = new FindByDescription('Description');
         $criteria2 = new OrderByNameDesc();
 
         $this->repository
@@ -81,10 +82,12 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
         $this->assertEquals($result[1]->name, 'Category Dois');
     }
 
+
     public function test_can_list_all_categories_with_criteria()
     {
-        // CREATING CATEGORIES WITH SAME DESCRIPTION ON CONSTRUCTOR
-        $criteria1 = new FindByDescription($this->globalDescriptionToTest);
+        $this->createCategoryDescription();
+
+        $criteria1 = new FindByDescription('Description');
         $criteria2 = new OrderByNameDesc();
 
         $this->repository
@@ -97,15 +100,49 @@ class CategoryRepositoryCriteriaTest extends AbstractTestCase
         $this->assertEquals($result[1]->name, 'Category Dois');
     }
 
-    private function create_category_description_equals($description)
+
+    /**
+     * @expectedException \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function test_can_find_categories_with_criteria_and_exception()
+    {
+        $this->createCategoryDescription();
+
+        $criteria1 = new FindByDescription('Description');
+        $criteria2 = new FindByName('Category Dois');
+
+        $this->repository
+            ->addCriteria($criteria1)
+            ->addCriteria($criteria2);
+
+        $this->repository->find(5);
+    }
+
+
+    public function test_can_find_categories_with_criteria()
+    {
+        $this->createCategoryDescription();
+
+        $criteria1 = new FindByDescription('Description');
+        $criteria2 = new FindByName('Category Um');
+
+        $this->repository
+            ->addCriteria($criteria1)
+            ->addCriteria($criteria2);
+
+        $result = $this->repository->find(5);
+        $this->assertEquals($result->name, 'Category Um');
+    }
+
+    private function createCategoryDescription()
     {
         Category::create([
             'name' => 'Category Dois',
-            'description' => $description
+            'description' => 'Description'
         ]);
         Category::create([
             'name' => 'Category Um',
-            'description' => $description
+            'description' => 'Description'
         ]);
 
     }
