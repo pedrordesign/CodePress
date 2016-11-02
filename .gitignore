@@ -2,6 +2,7 @@
 /codetag
 /codecategory
 /codedatabase
+/codeposts
 /CodePress/packages/*
 /.idea
 composer.phar
