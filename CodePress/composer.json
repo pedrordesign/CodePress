@@ -25,7 +25,8 @@
             "App\\": "app/",
             "CodePress\\CodeCategory\\": "packages/codecategory/src/CodeCategory/",
             "CodePress\\CodeTag\\": "packages/codetag/src/CodeTag/",
-            "CodePress\\CodeDatabase\\": "packages/codedatabase/src/CodeDatabase/"
+            "CodePress\\CodeDatabase\\": "packages/codedatabase/src/CodeDatabase/",
+            "CodePress\\CodePost\\": "packages/codepost/src/CodePost/"
         }
     },
     "autoload-dev": {

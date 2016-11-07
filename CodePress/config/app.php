@@ -166,7 +166,9 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
+        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
+        \CodePress\CodePost\Providers\CodePostServiceProvider::class,
 
         //
 
@@ -181,13 +183,10 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
-        \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
+
+
         \Cviebrock\EloquentSluggable\ServiceProvider::class,
 
-        \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
-
-
-        //\CodePress\CodeTag\Providers\CodeTagServiceProvider::class
 
 
     ],
