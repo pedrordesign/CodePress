@@ -1,7 +1,5 @@
 <?php
 
-use CodePress\CodeUser\Models\User;
-
 return [
 
     /*
@@ -69,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => User::class,
+            'model' => App\User::class,
         ],
 
         // 'users' => [
@@ -96,7 +94,7 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'codepress_password_resets',
+            'table' => 'password_resets',
             'expire' => 60,
         ],
     ],

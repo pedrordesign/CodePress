@@ -3,6 +3,7 @@
 /codecategory
 /codedatabase
 /codepost
+/codeuser
 /CodePress/packages/*
 /.idea
 composer.phar

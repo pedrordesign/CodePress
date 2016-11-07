@@ -169,6 +169,7 @@ return [
         \CodePress\CodeCategory\Providers\CodeCategoryServiceProvider::class,
         \CodePress\CodeTag\Providers\CodeTagServiceProvider::class,
         \CodePress\CodePost\Providers\CodePostServiceProvider::class,
+        \CodePress\CodeUser\Providers\CodeUserServiceProvider::class,
 
         //
 
