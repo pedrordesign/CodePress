@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2683f6d15e964ca9210e7c6582abfd8a",
-    "content-hash": "746f9fbd03621576c8a66b0f97af33c5",
+    "hash": "22e1b718b5444eb236cdf63e36f9889d",
+    "content-hash": "f964813c88c97229406e9b6fa50e9a7b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -953,6 +953,52 @@
                 "random"
             ],
             "time": "2016-10-17 15:23:22"
+        },
+        {
+            "name": "pedrordesign/laravel-tinymce",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pedrordesign/laravel-tinymce.git",
+                "reference": "d78d9709ca92c8ecc010ae437ca2bdc8ee2927b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pedrordesign/laravel-tinymce/zipball/d78d9709ca92c8ecc010ae437ca2bdc8ee2927b4",
+                "reference": "d78d9709ca92c8ecc010ae437ca2bdc8ee2927b4",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ktquez\\Tinymce\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pedro Ramos: pedrordesign",
+                    "website": "http://pedrordesign.com.br",
+                    "email": "pedro@pedrordesign.com.br"
+                }
+            ],
+            "description": "TinyMCE editor for Laravel and Lumen Framework",
+            "homepage": "https://github.com/ktquez/laravel-tinymce",
+            "keywords": [
+                "WYSIWYG",
+                "ckeditor",
+                "editor",
+                "laravel",
+                "lumen",
+                "textarea",
+                "tinymce"
+            ],
+            "support": {
+                "source": "https://github.com/pedrordesign/laravel-tinymce/tree/master"
+            },
+            "time": "2016-11-07 14:36:51"
         },
         {
             "name": "psr/log",
@@ -3609,7 +3655,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "pedrordesign/laravel-tinymce": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

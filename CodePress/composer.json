@@ -8,8 +8,15 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "cviebrock/eloquent-sluggable": "~4.1",
-        "laravelcollective/html":"^5.3.0"
+        "laravelcollective/html":"^5.3.0",
+        "pedrordesign/laravel-tinymce": "dev-master"
     },
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url": "https://github.com/pedrordesign/laravel-tinymce.git"
+        }
+    ],
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
