@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                $post->comments()->save(factory(Comment::class)->make());
            }
         });
-        $this->command()->info("Finished Seeders!");
+        $this->command->info("Finished Seeders!");
 
     }
 }

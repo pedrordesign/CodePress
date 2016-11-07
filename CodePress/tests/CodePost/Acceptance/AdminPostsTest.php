@@ -43,22 +43,46 @@ class AdminPostsTest extends \TestCase
             ->see('Post 11');
     }
 
-    public function test_click_create_new_button()
+    public function test_click_create_new_post()
     {
         $this->visit('admin/posts')
             ->click('Create Post')
             ->seePageIs('/admin/posts/create')
             ->see('Create Post');
     }
-/*
-    public function test_create_new_button()
+
+    public function test_create_new_post()
     {
         $this->visit('admin/posts/create')
-            ->type('Post Test', 'title')
-            ->press('Create Post')
+            ->type('Post criado', 'title')
+            ->type('Conteudo do post', 'content')
+            ->press('Submit')
             ->seePageIs('admin/posts')
-            ->see('Post Test')
+            ->see('Post criado')
+            ->see('Conteudo do post')
         ;
-    }*/
+    }
+
+    public function test_click_edit_a_post()
+    {
+        $post = Post::create(['title' => 'Post para edit', 'content' => 'Conteudo do meu post']);
+        $this->visit("admin/posts/")
+            ->click("link_edit_post_$post->id")
+            ->seePageIs("/admin/posts/$post->id/edit")
+            ->see('Edit Post');
+    }
+
+    public function test_update_new_post()
+    {
+        $post = Post::create(['title' => 'Post para edit', 'content' => 'Conteudo do meu post']);
+        $this->visit("admin/posts/{$post->id}/edit")
+            ->type('Post Alterado', 'title')
+            ->type('Conteudo do post', 'content')
+            ->press('Submit')
+            ->seePageIs('admin/posts')
+            ->see('Post Alterado')
+            ->see('Conteudo do post')
+        ;
+    }
 
 }
