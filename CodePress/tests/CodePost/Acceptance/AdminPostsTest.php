@@ -10,6 +10,7 @@ namespace CodePress\CodePost\Testing;
 
 
 use CodePress\CodePost\Models\Post;
+use CodePress\CodeUser\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AdminPostsTest extends \TestCase
@@ -17,11 +18,26 @@ class AdminPostsTest extends \TestCase
 
     use DatabaseTransactions;
 
+    protected function getUser(){
+        return factory(User::class)->create();
+    }
+
+    public function test_cannot_access_posts()
+    {
+
+        $this
+            ->visit('/admin/posts')
+            ->see('E-Mail Address');
+
+    }
+
     public function test_can_visit_admin_posts_page()
     {
 
-        $this->visit('/admin/posts')
-        ->see('Posts');
+        $this
+            ->actingAs($this->getUser())
+            ->visit('/admin/posts')
+            ->see('Categories');
 
     }
 
@@ -34,7 +50,9 @@ class AdminPostsTest extends \TestCase
         Post::create(['title' => 'Post 11', 'content' => 'Conteudo do meu post']);
 
 
-        $this->visit('/admin/posts')
+        $this
+             ->actingAs($this->getUser())
+            ->visit('/admin/posts')
             ->see('Posts')
             ->see('Post 7')
             ->see('Post 8')
@@ -45,7 +63,9 @@ class AdminPostsTest extends \TestCase
 
     public function test_click_create_new_post()
     {
-        $this->visit('admin/posts')
+        $this
+             ->actingAs($this->getUser())
+            ->visit('admin/posts')
             ->click('Create Post')
             ->seePageIs('/admin/posts/create')
             ->see('Create Post');
@@ -53,7 +73,9 @@ class AdminPostsTest extends \TestCase
 
     public function test_create_new_post()
     {
-        $this->visit('admin/posts/create')
+        $this
+             ->actingAs($this->getUser())
+            ->visit('admin/posts/create')
             ->type('Post criado', 'title')
             ->type('Conteudo do post', 'content')
             ->press('Submit')
@@ -66,7 +88,9 @@ class AdminPostsTest extends \TestCase
     public function test_click_edit_a_post()
     {
         $post = Post::create(['title' => 'Post para edit', 'content' => 'Conteudo do meu post']);
-        $this->visit("admin/posts/")
+        $this
+             ->actingAs($this->getUser())
+            ->visit("admin/posts/")
             ->click("link_edit_post_$post->id")
             ->seePageIs("/admin/posts/$post->id/edit")
             ->see('Edit Post');
@@ -75,7 +99,9 @@ class AdminPostsTest extends \TestCase
     public function test_update_new_post()
     {
         $post = Post::create(['title' => 'Post para edit', 'content' => 'Conteudo do meu post']);
-        $this->visit("admin/posts/{$post->id}/edit")
+        $this
+             ->actingAs($this->getUser())
+            ->visit("admin/posts/{$post->id}/edit")
             ->type('Post Alterado', 'title')
             ->type('Conteudo do post', 'content')
             ->press('Submit')

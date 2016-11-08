@@ -22,6 +22,15 @@ class AdminCategoriesTest extends \TestCase
         return factory(User::class)->create();
     }
 
+    public function test_cannot_access_categories()
+    {
+
+        $this
+            ->visit('/admin/categories')
+            ->see('E-Mail Address');
+
+    }
+
     public function test_can_visit_admin_categories_page()
     {
 
