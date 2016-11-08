@@ -10,12 +10,17 @@
         "cviebrock/eloquent-sluggable": "~4.1",
         "laravelcollective/html":"^5.3.0",
         "pedrordesign/laravel-tinymce": "dev-master",
+        "pedrordesign/CodePress_codeuser": "dev-master",
         "doctrine/dbal": "^2.5"
     },
     "repositories" : [
         {
             "type": "vcs",
             "url": "https://github.com/pedrordesign/laravel-tinymce.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/pedrordesign/CodePress_codeuser.git"
         }
     ],
     "require-dev": {

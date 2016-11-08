@@ -10,6 +10,7 @@ namespace CodePress\CodeCategory\Testing;
 
 
 use CodePress\CodeCategory\Models\Category;
+use CodePress\CodeUser\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AdminCategoriesTest extends \TestCase
@@ -17,11 +18,17 @@ class AdminCategoriesTest extends \TestCase
 
     use DatabaseTransactions;
 
+    protected function getUser(){
+        return factory(User::class)->create();
+    }
+
     public function test_can_visit_admin_categories_page()
     {
 
-        $this->visit('/admin/categories')
-        ->see('Categories');
+        $this
+            ->actingAs($this->getUser())
+            ->visit('/admin/categories')
+            ->see('Categories');
 
     }
 
@@ -34,7 +41,9 @@ class AdminCategoriesTest extends \TestCase
         Category::create(['name' => 'Category 11', 'active' => true]);
 
 
-        $this->visit('/admin/categories')
+        $this
+            ->actingAs($this->getUser())
+            ->visit('/admin/categories')
             ->see('Categories')
             ->see('Category 7')
             ->see('Category 8')
@@ -45,7 +54,9 @@ class AdminCategoriesTest extends \TestCase
 
     public function test_click_create_new_button()
     {
-        $this->visit('admin/categories')
+        $this
+            ->actingAs($this->getUser())
+            ->visit('admin/categories')
             ->click('Create Category')
             ->seePageIs('/admin/categories/create')
             ->see('Create Category');
@@ -53,7 +64,9 @@ class AdminCategoriesTest extends \TestCase
 
     public function test_create_new_button()
     {
-        $this->visit('admin/categories/create')
+        $this
+            ->actingAs($this->getUser())
+            ->visit('admin/categories/create')
             ->type('Category Test', 'name')
             ->check('active')
             ->press('Create Category')
