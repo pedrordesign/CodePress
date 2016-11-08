@@ -16,17 +16,8 @@ Route::get('/', function () {
 });
 
 
-
-Route::group([], function (){
-    $router = new \CodePress\CodeUser\Routing\Router();
-    $router->auth();
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index');
-});
-
-
-/*
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');*/
+Route::get('/home', 'HomeController@index');
+Auth::routes();
+
