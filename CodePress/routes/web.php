@@ -1,6 +1,6 @@
 <?php
 
-//use CodePress\CodeUser\Routing\Router;
+use CodePress\CodeUser\Facade\Route as CustomRouter;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('home');
 });
 
-$router = new \CodePress\CodeUser\Routing\Router();
-$router->auth();
+CustomRouter::auth();
 //Route::auth();
 //Auth::routes();
 
+
+Route::get('/home', 'HomeController@index');
 
