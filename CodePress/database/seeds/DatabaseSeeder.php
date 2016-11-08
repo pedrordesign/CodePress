@@ -23,6 +23,13 @@ class DatabaseSeeder extends Seeder
                $post->comments()->save(factory(Comment::class)->make());
            }
         });
+
+        factory(Post::class, 10)->create()->each(function ($post){
+            foreach (range(1, 10) as $value) {
+                $post->comments()->save(factory(Comment::class)->make());
+            }
+        });
+
         $this->command->info("Finished Seeders!");
 
     }
