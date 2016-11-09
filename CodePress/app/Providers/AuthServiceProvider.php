@@ -24,27 +24,27 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::before(function ($user, $ability)
+        /*Gate::before(function ($user, $ability)
         {
             if ($user->email == 'email@user.com') {
                 return true;
             }
 
-        });
+        });*/
 
         Gate::define('update-category', function ($user, $category) {
             return $user->id == $category->user->id ;
 
         });
 
-        Gate::after(function($user, $ability, $result, $arguments){
+        /*Gate::after(function($user, $ability, $result, $arguments){
            if(!$result){
                abort(403, 'Acesso não autorizado');
                return redirect()->route('admin.categories.index');
                //return $this->response->view($arguments[0].'::index', compact($arguments[1]));
            }
 
-        });
+        });*/
 
         //
     }
