@@ -17,19 +17,6 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * @param $user
-     * @param $ability
-     * @return bool
-     */
-    public function before($user, $ability)
-    {
-        return false;
-        if ($user->isSuperAdmin()) {
-            return true;
-        }
-    }
-
-    /**
      * Register any authentication / authorization services.
      *
      * @return void
@@ -42,11 +29,23 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->email == 'email@user.com') {
                 return true;
             }
+
         });
 
         Gate::define('update-category', function ($user, $category) {
             return $user->id == $category->user->id ;
+
         });
+
+        Gate::after(function($user, $ability, $result, $arguments){
+           if(!$result){
+               abort(403, 'Acesso não autorizado');
+               return redirect()->route('admin.categories.index');
+               //return $this->response->view($arguments[0].'::index', compact($arguments[1]));
+           }
+
+        });
+
         //
     }
 }
