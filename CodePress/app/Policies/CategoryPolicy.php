@@ -19,6 +19,14 @@ class CategoryPolicy
         //
     }
 
+    public function before(){
+        //return true;
+    }
+
+    public function after(){
+        //return true;
+    }
+
     public function update($user, $category){
         return $user->id == $category->user->id ;
     }
