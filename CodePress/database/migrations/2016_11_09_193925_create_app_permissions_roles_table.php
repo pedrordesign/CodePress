@@ -15,7 +15,7 @@ class CreateAppPermissionsRolesTable extends Migration
     {
         Schema::create('app_permissions_roles', function (Blueprint $table){
             $table->integer('permissions_id');
-            $table->foreign('permissions_id')->references('id')->on('codepress_permissions');
+            $table->foreign('permissions_id')->references('id')->on('app_permissions');
             $table->integer('role_id');
             $table->foreign('role_id')->references('id')->on('app_roles');
         });
