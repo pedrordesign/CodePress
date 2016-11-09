@@ -25,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-category', function ($user, $category) {
+        Gate::define('update-category', function ($user, $category, $name) {
+            echo $name;
             return $user->id == $category->user->id;
         });
         //
