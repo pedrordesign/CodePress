@@ -17,6 +17,19 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
+     * @param $user
+     * @param $ability
+     * @return bool
+     */
+    public function before($user, $ability)
+    {
+        return false;
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+    }
+
+    /**
      * Register any authentication / authorization services.
      *
      * @return void
@@ -24,9 +37,15 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Gate::before(function ($user, $ability)
+        {
+            if ($user->email == 'email@user.com') {
+                return true;
+            }
+        });
 
         Gate::define('update-category', function ($user, $category) {
-            return $user->id == $category->user->id;
+            return $user->id == $category->user->id ;
         });
         //
     }
