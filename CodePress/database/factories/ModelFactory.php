@@ -16,7 +16,7 @@ use CodePress\CodePost\Models\Comment;
 use CodePress\CodePost\Models\Post;
 use CodePress\CodeUser\Models\User;
 
-$factory->define(User::class, function (){
+$factory->define(User::class, function (Faker\Generator $faker){
     return [
         'name' => 'user',
         'email' => 'email@user.com.br',
@@ -25,6 +25,8 @@ $factory->define(User::class, function (){
         'remember_token' => str_random(10)
     ];
 });
+//CodePress\CodeUser\Models\User::create(['name' => 'user', 'email' => 'email@user.com', 'password' => bcrypt(123456)])
+
 
 /*$factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -41,7 +43,8 @@ $factory->define(User::class, function (){
 $factory->define(Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
-        'active' => true
+        'active' => true,
+        'user_id' => rand(1,2)
     ];
 });
 
