@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $user1 = factory(User::class)->make();
-        $user2 = factory(User::class)->make(['name' => 'admin', 'email' => 'user@app.com']);
+        $user2 = factory(User::class)->make(['name' => 'admin', 'email' => 'user2@app.com']);
         $user1->save();
         $user2->save();
         factory(Category::class, 5)->create();

@@ -18,10 +18,10 @@ use CodePress\CodeUser\Models\User;
 
 $factory->define(User::class, function (Faker\Generator $faker){
     return [
-        'name' => 'admin',
-        'email' => 'admin@app.com.br',
+        'name' => 'user1',
+        'email' => 'user1@app.com.br',
         'active' => true,
-        'password' => bcrypt('q1w2e3r4'),
+        'password' => bcrypt('123456'),
         'remember_token' => str_random(10)
     ];
 });
