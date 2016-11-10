@@ -24,12 +24,42 @@ class CreateAclData extends Migration
             'name' => Role::ROLE_REDATOR
         ]);
 
-        $permissionPublishPost = Permission::create([
-           'name' => 'publish_post',
+        $permissionPublishPosts = Permission::create([
+           'name' => 'post_publish',
             'description' => 'Publish draft post permission'
         ]);
 
-        $roleEditor->permissions()->save($permissionPublishPost);
+        $permissionAccessPosts = Permission::create([
+            'name' => 'posts_access',
+            'description' => 'Access posts area permission'
+        ]);
+
+        $permissionAccessCategories = Permission::create([
+            'name' => 'categories_access',
+            'description' => 'Access categories area permission'
+        ]);
+
+        $permissionAccessTags = Permission::create([
+            'name' => 'tags_access',
+            'description' => 'Access tags area permission'
+        ]);
+
+        $permissionAccessUsers = Permission::create([
+            'name' => 'users_access',
+            'description' => 'Access users area permission'
+        ]);
+
+        $roleAdmin->permissions()->save($permissionPublishPosts);
+        $roleAdmin->permissions()->save($permissionAccessPosts);
+        $roleAdmin->permissions()->save($permissionAccessCategories);
+        $roleAdmin->permissions()->save($permissionAccessTags);
+        $roleAdmin->permissions()->save($permissionAccessUsers);
+
+
+        $roleEditor->permissions()->save($permissionAccessPosts);
+        $roleEditor->permissions()->save($permissionAccessCategories);
+        $roleEditor->permissions()->save($permissionAccessTags);
+        $roleEditor->permissions()->save($permissionAccessUsers);
 
 
     }
