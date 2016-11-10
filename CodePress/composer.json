@@ -16,10 +16,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/pedrordesign/laravel-tinymce.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/pedrordesign/CodePress_codeuser.git"
         }
     ],
     "require-dev": {
