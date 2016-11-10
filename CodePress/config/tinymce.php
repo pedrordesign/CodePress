@@ -8,8 +8,7 @@ return [
 	'default' => [
 		"selector" => ".tinymce",
 		"language" => 'en',
-        "height" => "600",
-        "theme" => "modern",
+		"theme" => "modern",
 		"skin" => "lightgray",
 		"plugins" => [
 	         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",

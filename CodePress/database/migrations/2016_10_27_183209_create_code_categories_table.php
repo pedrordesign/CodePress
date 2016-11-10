@@ -22,6 +22,8 @@ class CreateCodeCategoriesTable extends Migration
             $table->boolean('active')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('codepress_users');
+            $table->integer('categorizable_id')->nullable();
+            $table->string('categorizable_type')->nullable();
             $table->timestamps();
         });
     }

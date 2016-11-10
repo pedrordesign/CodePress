@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a320302783ec5e119488f7506f211be",
-    "content-hash": "aff7d320687447ca37fb5b3a662e963c",
+    "hash": "96de7640118f4595697ff65b8a35459e",
+    "content-hash": "241fd512238f587ebc5ed8a13444801a",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -127,20 +127,20 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "1832f0427f1aaf1c83a0d39df3da2b5602a3096f"
+                "reference": "20e78e7cc68facc934034024daf1fbaae7ce0c90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/1832f0427f1aaf1c83a0d39df3da2b5602a3096f",
-                "reference": "1832f0427f1aaf1c83a0d39df3da2b5602a3096f",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/20e78e7cc68facc934034024daf1fbaae7ce0c90",
+                "reference": "20e78e7cc68facc934034024daf1fbaae7ce0c90",
                 "shasum": ""
             },
             "require": {
-                "cocur/slugify": "^2.1",
+                "cocur/slugify": "^2.3",
                 "illuminate/config": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/database": "5.1.* || 5.2.* || 5.3.*",
                 "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
@@ -174,7 +174,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2016-10-12 04:26:51"
+            "time": "2016-11-09 15:42:49"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
