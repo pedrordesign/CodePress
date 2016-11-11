@@ -17,6 +17,8 @@ class CreateCodeTagsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->boolean('active')->default(false);
+            $table->integer('taggable_id')->nullable()->unsigned()->index();
+            $table->string('taggable_type')->nullable()->index();
             $table->timestamps();
         });
     }
