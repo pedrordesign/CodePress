@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Policies\CategoryPolicy;
 use CodePress\CodeCategory\Models\Category;
+use CodePress\CodePost\Models\Post;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        Category::class => CategoryPolicy::class
+        Category::class => CategoryPolicy::class,
+        Post::class => PostPolicy::class,
     ];
 
     /**

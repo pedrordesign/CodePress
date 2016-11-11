@@ -44,12 +44,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/') }}">Home</a></li>
+                        @can('categories_access')
                         <li><a href="{{ url('/admin/categories') }}">Categories</a></li>
+                        @endcan
+                        @can('tags_access')
                         <li><a href="{{ url('/admin/tags') }}">Tags</a></li>
+                        @endcan
+                        @can('posts_access')
                         <li><a href="{{ url('/admin/posts') }}">Posts</a></li>
+                        @endcan
+                        @can('users_access')
                         <li><a href="{{ url('/admin/users') }}">Users</a></li>
+                        @endcan
+                        @can('roles_access')
                         <li><a href="{{ url('/admin/roles') }}">Roles</a></li>
+                        @endcan
+                        @can('permissions_access')
                         <li><a href="{{ url('/admin/permissions') }}">Permissions</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
