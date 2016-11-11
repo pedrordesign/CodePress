@@ -25,7 +25,7 @@ class CreateAclData extends Migration
         ]);
 
         $permissionPublishPosts = Permission::create([
-           'name' => 'post_publish',
+            'name' => 'post_publish',
             'description' => 'Publish draft post permission'
         ]);
 
