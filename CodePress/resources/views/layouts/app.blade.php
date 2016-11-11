@@ -45,7 +45,11 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="{{ url('/admin/categories') }}">Categories</a></li>
+                        <li><a href="{{ url('/admin/tags') }}">Tags</a></li>
                         <li><a href="{{ url('/admin/posts') }}">Posts</a></li>
+                        <li><a href="{{ url('/admin/users') }}">Users</a></li>
+                        <li><a href="{{ url('/admin/roles') }}">Roles</a></li>
+                        <li><a href="{{ url('/admin/permissions') }}">Permissions</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
